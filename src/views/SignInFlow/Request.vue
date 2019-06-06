@@ -3,9 +3,9 @@
 </template>
 
 <script>
-    export default {
-        name="Request"
-    }
+export default {
+  name: "Request"
+};
 </script>
 
 <style lang="scss" scoped>
