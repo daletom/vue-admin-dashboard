@@ -1,16 +1,34 @@
 <template>
-  <div class="container">
-    <div class="request">
+  <div
+    class="container"
+    :class="{'light-background' : !isDarkMode, 'dark-background' : isDarkMode}"
+  >
+    <div class="request" :class="{'light-request' : isDarkMode, 'dark-request' : !isDarkMode}">
       Don't have a Heater Homes HQ account?
-      <router-link to="/request">Request an account</router-link>
+      <router-link
+        to="/request"
+        :class="{'light-link': isDarkMode, 'dark-link' : !isDarkMode}"
+      >Request an account</router-link>
     </div>
     <div class="login">
-      <img src="@/assets/thedales2darkopt.svg">
-      <h4>Sign into Heater Homes HQ</h4>
-      <input type="email" placeholder="Email">
-      <input type="password" placeholder="Password">
+      <img src="@/assets/thedalesdarkopt.svg" v-if="isDarkMode">
+      <img src="@/assets/thedales2opt.svg" v-if="!isDarkMode">
+      <h4 :class="{'light-text' : isDarkMode, 'dark-text' : !isDarkMode}">Sign into Heater Homes HQ</h4>
+      <input
+        type="email"
+        placeholder="Email"
+        :class="{'light-field' : isDarkMode, 'dark-field' : !isDarkMode}"
+      >
+      <input
+        type="password"
+        placeholder="Password"
+        :class="{'light-field' : isDarkMode, 'dark-field' : !isDarkMode}"
+      >
       <button>Sign In</button>
-      <router-link to="/recover">Forgot your password?</router-link>
+      <router-link
+        to="/recover"
+        :class="{'light-link': isDarkMode, 'dark-link' : !isDarkMode}"
+      >Forgot your password?</router-link>
       <button @click="toggleDarkMode">Toggle Color</button>
     </div>
   </div>
@@ -19,13 +37,15 @@
 <script>
 export default {
   name: "SignIn",
-  data: {
-    isDarkMode: true
+  data() {
+    return {
+      isDarkMode: true
+    };
   },
   methods: {
     toggleDarkMode() {
       this.isDarkMode = !this.isDarkMode;
-      alert(this.isDarkMode);
+      document.body.style.background = this.isDarkMode ? "#212c4f" : "#f0f3f5";
     }
   }
 };
@@ -39,6 +59,55 @@ export default {
 .dark-background {
   background-color: $dark-blue;
 }
+
+.light-text {
+  color: $white;
+}
+
+.dark-text {
+  color: $black;
+}
+
+.light-link {
+  color: $white;
+}
+
+.dark-link {
+  color: $black;
+}
+
+.light-field {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.3);
+  }
+}
+
+.dark-field {
+  background: rgba(198, 208, 235, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  &::placeholder {
+    color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.light-request {
+  color: rgba(255, 255, 255, 0.3);
+
+  a {
+    color: white;
+  }
+}
+
+.dark-request {
+  color: rgba(0, 0, 0, 0.3);
+
+  a {
+    color: $black;
+  }
+}
+
 .container {
   display: flex;
   justify-content: center;
