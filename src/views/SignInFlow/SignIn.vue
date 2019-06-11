@@ -3,13 +3,7 @@
     class="container"
     :class="{'light-background' : !isDarkMode, 'dark-background' : isDarkMode}"
   >
-    <div class="request" :class="{'light-request' : isDarkMode, 'dark-request' : !isDarkMode}">
-      Don't have a Heater Homes HQ account?
-      <router-link
-        to="/request"
-        :class="{'light-link': isDarkMode, 'dark-link' : !isDarkMode}"
-      >Request an account</router-link>
-    </div>
+    <RequestAccount/>
     <div class="login">
       <img src="@/assets/thedalesdarkopt.svg" v-if="isDarkMode">
       <img src="@/assets/thedales2opt.svg" v-if="!isDarkMode">
@@ -29,23 +23,29 @@
         to="/recover"
         :class="{'light-link': isDarkMode, 'dark-link' : !isDarkMode}"
       >Forgot your password?</router-link>
-      <button @click="toggleDarkMode">Toggle Color</button>
+      <ThemeSwitch/>
     </div>
   </div>
 </template>
 
 <script>
+import RequestAccount from "@/components/RequestAccount";
+import ThemeSwitch from "@/components/ThemeSwitch";
+
 export default {
   name: "SignIn",
-  data() {
-    return {
-      isDarkMode: true
-    };
+  components: {
+    RequestAccount,
+    ThemeSwitch
+  },
+  computed: {
+    isDarkMode() {
+      return this.$store.getters.isDarkMode;
+    }
   },
   methods: {
     toggleDarkMode() {
-      this.isDarkMode = !this.isDarkMode;
-      document.body.style.background = this.isDarkMode ? "#212c4f" : "#f0f3f5";
+      this.$store.commit("toggleDarkMode");
     }
   }
 };
@@ -89,22 +89,6 @@ export default {
   border: 1px solid rgba(0, 0, 0, 0.2);
   &::placeholder {
     color: rgba(0, 0, 0, 0.3);
-  }
-}
-
-.light-request {
-  color: rgba(255, 255, 255, 0.3);
-
-  a {
-    color: white;
-  }
-}
-
-.dark-request {
-  color: rgba(0, 0, 0, 0.3);
-
-  a {
-    color: $black;
   }
 }
 

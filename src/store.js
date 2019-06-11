@@ -4,16 +4,15 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 // Initial State
-const state = {
-  isDarkMode: true
+if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+  window.localStorage.setItem("isDarkMode", "true");
 }
 
-export default new Vuex.Store({
-  state: {},
-  getters: {},
-  mutations: {},
-  actions: {}
-});
+const userSelectedDarkMode = window.localStorage.getItem("isDarkMode") === "true";
+
+const state = {
+  isDarkMode: userSelectedDarkMode
+}
 
 // Getters
 const getters = {
@@ -28,9 +27,11 @@ const mutations = {
     if (state.isDarkMode === true) {
       state.isDarkMode = false;
       document.body.style.background = "#f0f3f5";
+      window.localStorage.setItem("isDarkMode", "false");
     } else {
       state.isDarkMode = true;
       document.body.style.background = "#212c4f";
+      window.localStorage.setItem("isDarkMode", "true");
     }
   }
 }
@@ -41,3 +42,10 @@ const actions = {
     context.commit('toggleDarkMode');
   }
 }
+
+export default new Vuex.Store({
+  state: state,
+  getters: getters,
+  mutations: mutations,
+  actions: actions
+});
