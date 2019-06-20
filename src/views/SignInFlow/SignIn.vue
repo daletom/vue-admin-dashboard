@@ -3,7 +3,7 @@
     class="container"
     :class="{'light-background' : !isDarkMode, 'dark-background' : isDarkMode}"
   >
-    <Notification v-if="hasTexxt" :text="text"/>
+    <Notification v-if="hasText" :text="text"/>
     <RequestAccount/>
     <div class="login">
       <img src="@/assets/thedalesdarkopt.svg" v-if="isDarkMode">
