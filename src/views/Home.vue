@@ -3,13 +3,16 @@
     <Header/>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App Tom"/>
+    <Tenant/>
   </div>
 </template>
+
 
 <script>
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import Header from "@/components/Header.vue";
+import Tenant from "@/compnents/Tenant.vue";
 export default {
   name: "home",
   components: {
@@ -17,4 +20,17 @@ export default {
     Header
   }
 };
+var sheetUrl =
+  "https://spreadsheets.google.com/feeds/list/1goCqewPJs2khq5_da7UMH3WdKqhMbwXv-a-8A-gh3JA/1/public/values?alt=json";
 </script>
+<style>
+.entry {
+  min-height: 100px;
+  border: 1px solid;
+}
+
+#blog {
+  margin-bottom: 3em;
+}
+</style>
+
