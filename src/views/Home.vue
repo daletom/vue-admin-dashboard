@@ -3,7 +3,6 @@
     <Header/>
     <img alt="Vue logo" src="../assets/logo.png">
     <HelloWorld msg="Welcome to Your Vue.js App Tom"/>
-    <Tenant/>
   </div>
 </template>
 
@@ -12,7 +11,6 @@
 // @ is an alias to /src
 import HelloWorld from "@/components/HelloWorld.vue";
 import Header from "@/components/Header.vue";
-import Tenant from "@/compnents/Tenant.vue";
 export default {
   name: "home",
   components: {

@@ -2,7 +2,7 @@
     <div class="container">
   <a class="btn btn-normal" href="#theForm">Write</a>
     <div class="row">
-       <div v-for="(gsx$locationoftenant, gsx$tenantsname, gsx$amountofrentpermonth, gsx$leaseexpirationdate) in entries" class="col-md-4 entry">
+       <div v-for="(entry.gsx$locationoftenant.$t, entry.gsx$tenantsname.$t, entry.gsx$amountofrentpermonth.$t, entry.gsx$leaseexpirationdate.$t) in entries" class="col-md-4 entry">
             <h2>{{entry.gsx$locationoftenant.$t}}</h2>
             <div class="content" v-html="entry.gsx$tenantsname.$t"></div>
          <div class="content" v-html="entry.gsx$amountofrentpermonth.$t"></div>
@@ -19,7 +19,8 @@
 export default {
     name: "Tenant",
     data: {
-		entries: null
+        sheeturl: "https://spreadsheets.google.com/feeds/list/1goCqewPJs2khq5_da7UMH3WdKqhMbwXv-a-8A-gh3JA/1/public/values?alt=json",
+        entries: null
 	},
   
   watch: {
